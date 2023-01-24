@@ -16,7 +16,7 @@ const LoginPage = () => {
               placeholder="example@mail.com"
               fullWidth
               sx={{ mt: 2 }}
-            ></TextField>
+            />
           </Grid>
 
           <Grid item xs={12}>
@@ -26,7 +26,7 @@ const LoginPage = () => {
               placeholder="Password"
               fullWidth
               sx={{ mt: 2 }}
-            ></TextField>
+            />
           </Grid>
         </Grid>
 

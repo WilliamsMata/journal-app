@@ -16,7 +16,7 @@ const SignUpPage = () => {
               placeholder="Your name"
               fullWidth
               sx={{ mt: 2 }}
-            ></TextField>
+            />
           </Grid>
 
           <Grid item xs={12}>
@@ -26,7 +26,7 @@ const SignUpPage = () => {
               placeholder="example@mail.com"
               fullWidth
               sx={{ mt: 2 }}
-            ></TextField>
+            />
           </Grid>
 
           <Grid item xs={12}>
@@ -36,7 +36,7 @@ const SignUpPage = () => {
               placeholder="Password"
               fullWidth
               sx={{ mt: 2 }}
-            ></TextField>
+            />
           </Grid>
         </Grid>
 
