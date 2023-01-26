@@ -1,16 +1,38 @@
+import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import Google from "@mui/icons-material/Google";
 
 import AuthLayout from "../layout/AuthLayout";
+import { useForm } from "../../hooks";
+import { checkingAuthentication, startGoogleSignIn } from "../../store/auth";
 
 const LoginPage = () => {
+  const { email, password, onInputChange } = useForm({
+    email: "williams.rm99@gmail.com",
+    password: "123456",
+  });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(checkingAuthentication());
+  };
+
+  const onGoogleSignIn = () => {
+    dispatch(startGoogleSignIn());
+  };
+
   return (
     <AuthLayout title="Login">
-      <form>
+      <form onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12}>
             <TextField
+              name="email"
+              onChange={onInputChange}
+              value={email}
               label="Email"
               type="email"
               placeholder="example@mail.com"
@@ -21,6 +43,9 @@ const LoginPage = () => {
 
           <Grid item xs={12}>
             <TextField
+              name="password"
+              onChange={onInputChange}
+              value={password}
               label="Password"
               type="password"
               placeholder="Password"
@@ -32,13 +57,13 @@ const LoginPage = () => {
 
         <Grid container spacing={2} sx={{ mb: 1, mt: 1 }}>
           <Grid item xs={12} sm={6}>
-            <Button variant="contained" fullWidth>
+            <Button type="submit" variant="contained" fullWidth>
               Login
             </Button>
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button variant="contained" fullWidth>
+            <Button onClick={onGoogleSignIn} variant="contained" fullWidth>
               <Google />
               <Typography sx={{ ml: 1 }}>Google</Typography>
             </Button>
