@@ -34,10 +34,7 @@ const SignUpPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const { status, errorMessage } = useSelector((state) => state.auth);
-  const isCheckingAuthentication = useMemo(
-    () => status === "checking",
-    [status]
-  );
+  const isAuthenticating = useMemo(() => status === "checking", [status]);
 
   const {
     displayName,
@@ -120,7 +117,7 @@ const SignUpPage = () => {
               type="submit"
               variant="contained"
               fullWidth
-              disabled={isCheckingAuthentication}
+              disabled={isAuthenticating}
             >
               Create account
             </Button>
