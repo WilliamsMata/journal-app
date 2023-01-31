@@ -8,12 +8,9 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     createValidators();
   }, [formState]);
 
-  const isFormValid = useMemo(() => {
-    for (const formValue in formValidation) {
-      if (formValidation[formValue] !== null) return false;
-    }
-    return true;
-  }, [formValidation]);
+  useEffect(() => {
+    setFormState(initialForm);
+  }, [initialForm]);
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -40,6 +37,13 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
 
     setFormValidation(formCheckedValues);
   };
+
+  const isFormValid = useMemo(() => {
+    for (const formValue in formValidation) {
+      if (formValidation[formValue] !== null) return false;
+    }
+    return true;
+  }, [formValidation]);
 
   return {
     ...formState,
