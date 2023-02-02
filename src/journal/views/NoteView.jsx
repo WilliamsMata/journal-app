@@ -27,7 +27,7 @@ export const NoteView = () => {
 
   const dateString = useMemo(() => {
     const newDate = new Date(date);
-    return newDate.toUTCString().replace(" GMT", "");
+    return newDate.toUTCString();
   }, [date]);
 
   const dispatch = useDispatch();
