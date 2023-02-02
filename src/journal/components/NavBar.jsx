@@ -3,6 +3,7 @@ import MenuOutlined from "@mui/icons-material/MenuOutlined";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../store/auth";
+import { openNavbar } from "../../store/navbar";
 
 export const NavBar = ({ drawerWidth = 240 }) => {
   const { isSaving } = useSelector((state) => state.auth);
@@ -11,6 +12,10 @@ export const NavBar = ({ drawerWidth = 240 }) => {
 
   const onLogout = () => {
     dispatch(startLogout());
+  };
+
+  const onOpenSidebar = () => {
+    dispatch(openNavbar());
   };
 
   return (
@@ -23,6 +28,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
     >
       <Toolbar>
         <IconButton
+          onClick={onOpenSidebar}
           color="inherit"
           edge="start"
           sx={{ mr: 2, display: { md: "none" } }}
