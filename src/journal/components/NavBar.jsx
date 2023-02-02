@@ -1,10 +1,12 @@
 import { AppBar, Grid, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuOutlined from "@mui/icons-material/MenuOutlined";
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../store/auth";
 
 export const NavBar = ({ drawerWidth = 240 }) => {
+  const { isSaving } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   const onLogout = () => {
@@ -38,7 +40,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
             Journal App
           </Typography>
 
-          <IconButton onClick={onLogout} color="error">
+          <IconButton onClick={onLogout} disabled={isSaving} color="error">
             <LogoutOutlined />
           </IconButton>
         </Grid>
