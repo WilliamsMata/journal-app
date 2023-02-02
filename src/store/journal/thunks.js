@@ -64,7 +64,7 @@ export const startSavingNote = () => {
 };
 
 export const startUploadingFiles = (files = []) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch(setSaving());
 
     const uploadFilePromises = [];
@@ -75,5 +75,9 @@ export const startUploadingFiles = (files = []) => {
     const photosUrls = await Promise.all(uploadFilePromises);
 
     dispatch(setPhotosToActiveNote(photosUrls));
+
+    // Save images urls in firestore when loaded
+    const { active: note } = getState().journal;
+    dispatch(updateNote(note));
   };
 };
