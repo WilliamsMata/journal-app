@@ -1,11 +1,12 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { loadNotes } from "../../helpers/loadNotes";
+import { loadNotes, uploadFile } from "../../helpers";
 import {
   addNewEmptyNote,
   savingNewNote,
   setActiveNote,
   setNotes,
+  setPhotosToActiveNote,
   setSaving,
   updateNote,
 } from "./journalSlice";
@@ -59,5 +60,20 @@ export const startSavingNote = () => {
     await setDoc(docRef, noteToFireStore, { merge: true });
 
     dispatch(updateNote(note));
+  };
+};
+
+export const startUploadingFiles = (files = []) => {
+  return async (dispatch) => {
+    dispatch(setSaving());
+
+    const uploadFilePromises = [];
+    for (const file of files) {
+      uploadFilePromises.push(uploadFile(file));
+    }
+
+    const photosUrls = await Promise.all(uploadFilePromises);
+
+    dispatch(setPhotosToActiveNote(photosUrls));
   };
 };

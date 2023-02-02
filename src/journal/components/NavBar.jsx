@@ -15,15 +15,15 @@ export const NavBar = ({ drawerWidth = 240 }) => {
     <AppBar
       position="fixed"
       sx={{
-        width: { sm: `calc(100% - ${drawerWidth}px)` },
-        ml: { sm: `${drawerWidth}px` },
+        width: { md: `calc(100% - ${drawerWidth}px)` },
+        ml: { md: `${drawerWidth}px` },
       }}
     >
       <Toolbar>
         <IconButton
           color="inherit"
           edge="start"
-          sx={{ mr: 2, display: { sm: "none" } }}
+          sx={{ mr: 2, display: { md: "none" } }}
         >
           <MenuOutlined />
         </IconButton>
