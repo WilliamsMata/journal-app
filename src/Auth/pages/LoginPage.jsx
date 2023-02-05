@@ -65,6 +65,7 @@ const LoginPage = () => {
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
+        aria-label="form"
       >
         <Grid container>
           <Grid item xs={12}>
@@ -94,6 +95,9 @@ const LoginPage = () => {
               sx={{ mt: 2 }}
               error={!!passwordValid && formSubmitted}
               helperText={formSubmitted && passwordValid}
+              inputProps={{
+                "data-testid": "password",
+              }}
             />
           </Grid>
         </Grid>
@@ -120,6 +124,7 @@ const LoginPage = () => {
               variant="contained"
               fullWidth
               disabled={isAuthenticating}
+              aria-label="google-btn"
             >
               <Google />
               <Typography sx={{ ml: 1 }}>Google</Typography>
