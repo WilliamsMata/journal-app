@@ -62,6 +62,7 @@ const SignUpPage = () => {
       <form
         onSubmit={onSubmit}
         className="animate__animated animate__fadeIn animate__faster"
+        aria-label="form"
       >
         <Grid container>
           <Grid item xs={12}>
